@@ -3,12 +3,24 @@
   <Document name="dc-sample.ZPM">
     <Module>
       <Name>dc-sample</Name>
-      <Version>2.0.11</Version>
+      <Version>0.0.11</Version>
       <Description>Basic InterSystems IRIS Development Template</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="dc.sample.PKG"/>
-      <UnitTest Name="/tests" Package="dc.sample.unittests" Phase="test"/>
+      <Resource Name="dc.i14y.PKG"/>
+      <WebApplication 
+        Name="/lab/api" 
+        NameSpace="{$namespace}"
+        Path="/src"
+        Recurse="1"
+        Directory="{$cspdir}/csp/i14y/api" 
+        MatchRoles=":%All"
+        AutheEnabled="#{$$$AutheCache + $$$AutheUnauthenticated}"
+        DispatchClass="dc.i14y.service.Rest" 
+        ServeFiles="1"
+        CookiePath="/csp/14y/api"
+        UseCookies="2"
+      />
 
     </Module>
   </Document>
